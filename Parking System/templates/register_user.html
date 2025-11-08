@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='bg.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .register-box {
+            width: 350px;
+            margin: 100px auto;
+            background: rgba(255,255,255,0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+        }
+        h2 { text-align: center; }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover { background: #218838; }
+        .error { color: red; }
+        .msg { color: green; }
+    </style>
+</head>
+<body>
+    <div class="register-box">
+        <h2>Register</h2>
+        <form method="post">
+            <input type="text" name="username" placeholder="Username (optional if phone used)">
+            <input type="password" name="password" placeholder="Password (optional if phone used)">
+            <input type="email" name="email" placeholder="Email (optional)">
+            <input type="text" name="phone" placeholder="Phone Number (optional)">
+            <button type="submit">Register</button>
+        </form>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        {% if msg %}<p class="msg">{{ msg }}</p>{% endif %}
+        <p><a href="{{ url_for('login') }}">Back to Login</a></p>
+    </div>
+</body>
+</html>

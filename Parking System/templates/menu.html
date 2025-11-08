@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="home-container">
+    <h2>Welcome to Parking Management System</h2>
+    <p>Manage vehicle entries, exits, status, and reports easily.</p>
+
+    <!-- ✅ Home page image -->
+    <div class="home-image">
+        <img src="{{ url_for('static', filename='parking.png') }}" alt="Parking System">
+    </div>
+</div>
+{% endblock %}

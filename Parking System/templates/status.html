@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Parking Status</h2>
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Total</th>
+        <th>Occupied</th>
+        <th>Free</th>
+    </tr>
+
+    {% if rows %}
+        {% for row in rows %}
+        <tr>
+            <td>{{ row.vehicle_type }}</td>
+            <td>{{ row.total }}</td>
+            <td>{{ row.occupied }}</td>
+            <td>{{ row.free }}</td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr><td colspan="4">No data available</td></tr>
+    {% endif %}
+</table>
+{% endblock %}

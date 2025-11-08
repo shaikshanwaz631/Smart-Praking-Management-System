@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: yellow;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: white;
+            margin-top: 40px;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: white;
+            color: black;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        th {
+            background-color: #0074D9;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            a {
+                display: block;
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Reports</h1>
+
+    <div class="links">
+        <a href="/download_daily_summary">Download Daily Summary CSV</a>
+        <a href="/download_monthly_summary">Download Monthly Summary CSV</a>
+        <a href="/download_daily_detailed">Download Daily Detailed CSV</a>
+        <a href="/download_monthly_detailed">Download Monthly Detailed CSV</a>
+    </div>
+
+    <h2>Daily Collection Summary</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Total Amount</th>
+        </tr>
+        {% for row in daily_summary %}
+        <tr>
+            <td>{{ row.date }}</td>
+            <td>{{ row.total_amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Daily Detailed Transactions</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Vehicle No</th>
+            <th>Charges</th>
+            <th>Payment Time</th>
+        </tr>
+        {% for t in daily_detailed %}
+        <tr>
+            <td>{{ t.date }}</td>
+            <td>{{ t.vehicle_no }}</td>
+            <td>{{ t.charges }}</td>
+            <td>{{ t.payment_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Monthly Collection Summary</h2>
+    <table>
+        <tr>
+            <th>Month</th>
+            <th>Total Amount</th>
+        </tr>
+        {% for m in monthly_summary %}
+        <tr>
+            <td>{{ m.month }}</td>
+            <td>{{ m.total_amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
