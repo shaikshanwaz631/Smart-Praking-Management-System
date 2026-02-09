@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Vehicle Entry</h2>
+<form method="POST">
+    <input type="text" name="vehicle_no" placeholder="Vehicle Number" required><br>
+    <select name="vehicle_type" required>
+        <option value="2W">2 Wheeler</option>
+        <option value="4W">4 Wheeler</option>
+        <option value="Truck">Truck</option>
+        <option value="PD">Physically Disabled</option>
+    </select><br>
+    <button type="submit">Submit</button>
+</form>
+
+{% if done %}
+    {% if spot %}
+        <p>✅ Vehicle parked at spot <strong>{{ spot }}</strong> at {{ info }}</p>
+    {% else %}
+        <p class="error">{{ info }}</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

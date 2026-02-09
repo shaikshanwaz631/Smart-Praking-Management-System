@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parking System</title>
+    <!-- ✅ Correct CSS link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- ✅ Navbar only shows after login -->
+    {% if session.get('user') %}
+    <div class="navbar">
+        <a href="{{ url_for('menu') }}">Home</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('entry') }}">Entry</a>
+        <a href="{{ url_for('exit') }}">Exit</a>
+        <a href="{{ url_for('status') }}">Status</a>
+        <a href="{{ url_for('reports') }}">Reports</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+    {% endif %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

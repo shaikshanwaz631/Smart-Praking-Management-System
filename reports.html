@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h2 { text-align: center; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: rgba(255,255,255,0.9);
+            color: black;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        a {
+            color: yellow;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reports</h2>
+        <a href="{{ url_for('download_report', report_type='daily') }}">Download Daily Summary CSV</a>
+        <a href="{{ url_for('download_report', report_type='monthly') }}">Download Monthly Summary CSV</a>
+        <a href="{{ url_for('download_report', report_type='daily_details') }}">Download Daily Detailed CSV</a>
+        <a href="{{ url_for('download_report', report_type='monthly_details') }}">Download Monthly Detailed CSV</a>
+
+        <h3>Daily Collection Summary</h3>
+        <table>
+            <tr><th>Date</th><th>Total Amount</th></tr>
+            {% for row in daily_summary %}
+            <tr><td>{{ row['day'] }}</td><td>{{ row['total'] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h3>Daily Detailed Transactions</h3>
+        <table>
+            <tr><th>Date</th><th>Vehicle No</th><th>Charges</th><th>Payment Time</th></tr>
+            {% for row in daily_details %}
+            <tr>
+                <td>{{ row['day'] }}</td>
+                <td>{{ row['vehicle_no'] }}</td>
+                <td>{{ row['charges'] }}</td>
+                <td>{{ row['payment_time'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3>Monthly Collection Summary</h3>
+        <table>
+            <tr><th>Month</th><th>Total Amount</th></tr>
+            {% for row in monthly_summary %}
+            <tr><td>{{ row['month'] }}</td><td>{{ row['total'] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h3>Monthly Detailed Transactions</h3>
+        <table>
+            <tr><th>Month</th><th>Vehicle No</th><th>Charges</th><th>Payment Time</th></tr>
+            {% for row in monthly_details %}
+            <tr>
+                <td>{{ row['month'] }}</td>
+                <td>{{ row['vehicle_no'] }}</td>
+                <td>{{ row['charges'] }}</td>
+                <td>{{ row['payment_time'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

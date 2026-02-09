@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Vehicle Exit</h2>
+<form method="POST">
+    <input type="text" name="vehicle_no" placeholder="Vehicle Number" required><br>
+    <select name="payment_mode" required>
+        <option value="Cash">Cash</option>
+        <option value="Card">Card</option>
+        <option value="UPI">UPI</option>
+    </select><br>
+    <button type="submit">Exit & Generate Bill</button>
+</form>
+
+{% if done %}
+    {% if receipt %}
+        <h3>Receipt</h3>
+        <p>Vehicle: {{ receipt.vehicle_no }}</p>
+        <p>Spot: {{ receipt.spot }}</p>
+        <p>Entry: {{ receipt.entry_time }}</p>
+        <p>Exit: {{ receipt.exit_time }}</p>
+        <p>Charges: {{ receipt.charges }}</p>
+        <p>Payment: {{ receipt.payment_mode }}</p>
+        <p>Receipt No: {{ receipt.receipt_no }}</p>
+    {% else %}
+        <p class="error">{{ err }}</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
